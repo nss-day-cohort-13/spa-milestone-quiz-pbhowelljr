@@ -1,0 +1,35 @@
+
+* {
+	box-sizing: border-box;
+}
+
+
+
+
+#nav {
+	margin: 5px;
+	background-color: mediumpurple;
+}
+
+#textInput {
+	width: 90%;
+	margin: 0 5%;
+}
+
+
+#submitButton {
+	width: 50%;
+	margin: 0 25%;
+}
+
+
+#main {
+	margin: 5px;
+	background-color: mediumpurple;
+}
+
+.card {
+	background-color: mediumaquamarine;
+	min-height: 20px;
+	margin: 5px;
+}
