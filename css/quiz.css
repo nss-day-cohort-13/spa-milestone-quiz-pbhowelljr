@@ -1,0 +1,50 @@
+/***************\
+  GENERAL STYLES
+\***************/
+* {
+	box-sizing: border-box;
+	list-style: none;
+}
+
+body {
+	min-width: 260px;
+}
+
+/*******\
+  HEADER
+\*******/
+
+#nav {
+	margin: 5px;
+	background-color: mediumpurple;
+}
+
+#textInput {
+	width: 90%;
+	margin: 0 5%;
+}
+
+#submitButton {
+	width: 50%;
+	margin: 0 25%;
+}
+
+/******************\
+  MAIN CONTENT DIV
+\******************/
+
+#main {
+	margin: 5px;
+	background-color: mediumpurple;
+}
+
+.cards {
+	background-color: mediumaquamarine;
+	border: 1px solid black;
+	min-height: 20px;
+	margin: 5px;
+}
+
+#selectedCard {
+	background-color: tomato;
+}
