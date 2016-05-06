@@ -1,5 +1,5 @@
 
-//**********//QUIZ//**********//
+//**********//EVENT HANDLERS//**********//
 var carLot = (function(object) {
 	
 

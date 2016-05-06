@@ -1,5 +1,5 @@
 
-//**********//QUIZ//**********//
+//**********//BORDER//**********//
 var carLot = (function(object) {
 	
 
