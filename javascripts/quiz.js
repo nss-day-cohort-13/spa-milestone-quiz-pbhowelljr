@@ -2,14 +2,43 @@
 //**********//QUIZ//**********//
 var carLot = function(object) {
 
+	var cards = document.getElementsByClassName('cards');
+
 	cars = [];
+
+	var writeToDom = function(cardString, elem) {
+		elem.innerHTML = cardString;
+	};
+
+	var contentBuilder = function(carsArray) {
+		
+		for (var i = 0; i < carsArray.length; i++) {
+			content = '';
+			content += (
+				`<ul>`+
+				`<li>${carsArray[i].make}</li>`+
+				`<li>${carsArray[i].model}</li>`+
+				`<li>${carsArray[i].year}</li>`+
+				`<li>${carsArray[i].price}</li>`+
+				`<li>${carsArray[i].color}</li>`+
+				`<li>${carsArray[i].purchased}</li>`+
+				`<li>${carsArray[i].description}</li>`+
+				`</ul>`
+				);
+			writeToDom(content, cards[i]);
+		};
+	};
+
+
 
 	object.setCarsItem = function(object) {
 		cars[cars.length] = object;
+		contentBuilder(cars);
 	};
 
 	object.setCarsArray = function(array) {
 		cars = array;
+		contentBuilder(cars);
 	};
 
 	object.getCarsArray = function() {
