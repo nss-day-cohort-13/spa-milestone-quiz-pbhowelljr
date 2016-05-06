@@ -35,7 +35,7 @@ var carLot = (function(object) {
 				carLot.setCarsArray(carLot.getCarsArray());
 				cloneNode(textInput);
 				textInput = document.getElementById("textInput");
-				cards[index].focus();
+				mainContent.focus();
 			};
 		};
 
@@ -46,7 +46,7 @@ var carLot = (function(object) {
 				carLot.setCarsArray(carLot.getCarsArray());
 				cloneNode(textInput);
 				textInput = document.getElementById("textInput");
-				cards[index].focus();
+				mainContent.focus();
 			})
 		};
 
