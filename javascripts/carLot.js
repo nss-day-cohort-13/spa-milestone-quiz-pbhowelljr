@@ -1,5 +1,5 @@
 //**********//MAIN//**********//
-var carLot = function(object) {
+var carLot = (function(object) {
 	
 	//DECLARE DOM ELEMENT VARIABLES//
 	var mainContent = document.getElementById("mainContent");
@@ -96,4 +96,4 @@ var carLot = function(object) {
 	return object;	
 
 //INVOKES FUNCTION WITH EMPTY OBJECT IF CAR LOT HAS NOT YET INITIALIZED//
-}(carLot || {});
+})(carLot || {});
