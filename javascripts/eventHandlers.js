@@ -12,55 +12,58 @@ var carLot = (function(object) {
 		oldElem.parentNode.replaceChild(newElem, oldElem);
 	};
 
-	var addCardsEventListenersCallback = function(event) {
-		var index = event.currentTarget.getAttribute("index");
-		var borderStyle = event.currentTarget.getAttribute("style");
-		var borderColor = borderStyle.slice(borderStyle.lastIndexOf(' '));
-		carLot.setCarsArray(carLot.getCarsArray());
-		cards[index].setAttribute(`style`, `border: 6px solid ${borderColor}`);
-		cards[index].setAttribute(`id`, `selectedCard`);
-		addTextInputEventListener(index);
-		addSubmitButtonEventListener();
-	};
+	object.activateEvents = function() {
+		
+		var addCardsEventListenersCallback = function(event) {
+			var index = event.currentTarget.getAttribute("index");
+			var borderStyle = event.currentTarget.getAttribute("style");
+			var borderColor = borderStyle.slice(borderStyle.lastIndexOf(' '));
+			carLot.changeSelected(index, borderColor);
+			addTextInputEventListener(index);
+			addSubmitButtonEventListener();
+		};
 
-	var addTextInputkEventListenerCallback =  function(event, index) {
-			var description = cards[index].querySelector(".description");
-			description.innerHTML = textInput.value;
-			carLot.getCarsArray()[index].description = textInput.value;
-			if(event.which===13) {
+		var addTextInputkEventListenerCallback =  function(event, index) {
+				var description = cards[index].querySelector(".description");
+				description.innerHTML = textInput.value;
+				carLot.getCarsArray()[index].description = textInput.value;
+				if(event.which===13) {
+					textInput.value = '';
+					carLot.setCarsArray(carLot.getCarsArray());
+					cloneNode(textInput);
+					textInput = document.getElementById("textInput");
+					cards[index].focus();
+				};
+			};
+
+		var addSubmitButtonEventListener = function() {
+			submitButton.addEventListener("click", function() {
 				textInput.value = '';
 				carLot.setCarsArray(carLot.getCarsArray());
 				cloneNode(textInput);
 				textInput = document.getElementById("textInput");
 				cards[index].focus();
-			};
+			})
 		};
 
-	var addSubmitButtonEventListener = function() {
-		submitButton.addEventListener("click", function() {
+		var addTextInputEventListener = function(index) {
 			textInput.value = '';
-			carLot.setCarsArray(carLot.getCarsArray());
 			cloneNode(textInput);
 			textInput = document.getElementById("textInput");
-			cards[index].focus();
-		})
-	};
-
-	var addTextInputEventListener = function(index) {
-		textInput.value = '';
-		cloneNode(textInput);
-		textInput = document.getElementById("textInput");
-		textInput.focus();
-		textInput.addEventListener("keyup", function(event) {
-			addTextInputkEventListenerCallback(event, index);
-		});
-	};
-
-	object.addCardsEventListeners = function() {
-		for (var i = 0; i < cards.length; i++) {
-			cards[i].addEventListener("click", addCardsEventListenersCallback);
+			textInput.focus();
+			textInput.addEventListener("keyup", function(event) {
+				addTextInputkEventListenerCallback(event, index);
+			});
 		};
+
+		var addCardsEventListeners = function() {
+			for (var i = 0; i < cards.length; i++) {
+				cards[i].addEventListener("click", addCardsEventListenersCallback);
+			};
+		}();
 	};
+
+
 	
 	//RETURNS OBJECT WITH NEW METHODS ATTACHED//	
 	return object;	

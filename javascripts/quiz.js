@@ -7,7 +7,6 @@ var carLot = function(object) {
 
 	var writeToDom = function(content, elem) {
 		elem.innerHTML = content;
-		carLot.addCardsEventListeners();
 	};
 
 	var contentBuilder = function(carsArray) {
@@ -32,6 +31,7 @@ var carLot = function(object) {
 		};
 		content += `</div>`;
 		writeToDom(content, mainContent);
+		carLot.activateEvents();
 	};
 
 	object.setCarsItem = function(object) {
@@ -58,6 +58,7 @@ var carLot = function(object) {
 				array[array.length] = (pojo.cars[i]);
 			};
 			carLot.setCarsArray(array);
+
 		};
 
 		//ADDS EVENT LISTENERS FOR XHR LOAD//
