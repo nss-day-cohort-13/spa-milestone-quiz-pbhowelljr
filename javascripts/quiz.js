@@ -1,30 +1,30 @@
 
 //**********//QUIZ//**********//
 var carLot = function(object) {
-
+	
 	var mainContent = document.getElementById("mainContent");
 	cars = [];
 
 	var writeToDom = function(content, elem) {
 		elem.innerHTML = content;
+		carLot.addCardsEventListeners();
 	};
 
 	var contentBuilder = function(carsArray) {
-		
 		var content = `<div class=row">`;
 		for (var i = 0; i < carsArray.length; i++) {
 			var item = carsArray[i];
 			content += (
 				`<div class="col-md-4">`+
-				`<div class="cards" index="${i}">`+
+				`<div class="cards" index="${i}" style="border: 3px solid ${item.color}">`+
 				`<ul>`+
-				`<li>Make: ${item.make}</li>`+
-				`<li>Model: ${item.model}</li>`+
-				`<li>Year: ${item.year}</li>`+
-				`<li>Price: ${item.price}</li>`+
-				`<li>Color: ${item.color}</li>`+
-				`<li>Purchased: ${item.purchased}</li>`+
-				`<li>Description: ${item.description}</li>`+
+				`<li>Make: </li><li class="make">${item.make}</li>`+
+				`<li>Model: </li><li class="model">${item.model}</li>`+
+				`<li>Year: </li><li class="year">${item.year}</li>`+
+				`<li>Price: </li><li class="price">${item.price}</li>`+
+				`<li>Color: </li><li class="color">${item.color}</li>`+
+				`<li>Purchased: </li><li class="purchased">${item.purchased}</li>`+
+				`<li>Description: </li><li class="description">${item.description}</li>`+
 				`</ul>`+
 				`</div>`+
 				`</div>`
