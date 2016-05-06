@@ -2,34 +2,37 @@
 //**********//QUIZ//**********//
 var carLot = function(object) {
 
-	var cards = document.getElementsByClassName('cards');
-
+	var mainContent = document.getElementById("mainContent");
 	cars = [];
 
-	var writeToDom = function(cardString, elem) {
-		elem.innerHTML = cardString;
+	var writeToDom = function(content, elem) {
+		elem.innerHTML = content;
 	};
 
 	var contentBuilder = function(carsArray) {
 		
+		var content = `<div class=row">`;
 		for (var i = 0; i < carsArray.length; i++) {
-			content = '';
+			var item = carsArray[i];
 			content += (
+				`<div class="col-md-4">`+
+				`<div class="cards" index="${i}">`+
 				`<ul>`+
-				`<li>${carsArray[i].make}</li>`+
-				`<li>${carsArray[i].model}</li>`+
-				`<li>${carsArray[i].year}</li>`+
-				`<li>${carsArray[i].price}</li>`+
-				`<li>${carsArray[i].color}</li>`+
-				`<li>${carsArray[i].purchased}</li>`+
-				`<li>${carsArray[i].description}</li>`+
-				`</ul>`
+				`<li>Make: ${item.make}</li>`+
+				`<li>Model: ${item.model}</li>`+
+				`<li>Year: ${item.year}</li>`+
+				`<li>Price: ${item.price}</li>`+
+				`<li>Color: ${item.color}</li>`+
+				`<li>Purchased: ${item.purchased}</li>`+
+				`<li>Description: ${item.description}</li>`+
+				`</ul>`+
+				`</div>`+
+				`</div>`
 				);
-			writeToDom(content, cards[i]);
 		};
+		content += `</div>`;
+		writeToDom(content, mainContent);
 	};
-
-
 
 	object.setCarsItem = function(object) {
 		cars[cars.length] = object;
@@ -46,13 +49,17 @@ var carLot = function(object) {
 	};
 
 	object.loadInventory = function() {
+
 		//CALL BACK FOR XHR REQUEST LOAD EVENT LISTENER//
 		var addXhr = function () {
 			var pojo = JSON.parse(this.responseText);
+			var array = [];
 			for (var i = 0; i < pojo.cars.length; i++) {
-				carLot.setCarsItem(pojo.cars[i]);
+				array[array.length] = (pojo.cars[i]);
 			};
+			carLot.setCarsArray(array);
 		};
+
 		//ADDS EVENT LISTENERS FOR XHR LOAD//
 		var addXhrEventListener = function(request) {
 			request.addEventListener("load", addXhr);
@@ -60,6 +67,7 @@ var carLot = function(object) {
 				console.log("error");
 			});
 		};
+
 		//INITIALIZE XHR REQUEST//
 		var load = function() {
 			var loadRequest = new XMLHttpRequest();
