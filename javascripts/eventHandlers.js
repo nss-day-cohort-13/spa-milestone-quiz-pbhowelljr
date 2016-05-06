@@ -7,4 +7,4 @@ var carLot = (function(object) {
 	return object;	
 
 //INVOKES FUNCTION WITH EMPTY OBJECT IF CAR LOT HAS NOT YET INITIALIZED//
-})(petFood || {});
+})(carLot || {});
