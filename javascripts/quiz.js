@@ -1,14 +1,18 @@
-
 //**********//QUIZ//**********//
 var carLot = function(object) {
 	
+	//DECLARE DOM ELEMENT VARIABLES//
 	var mainContent = document.getElementById("mainContent");
+
+	//MAIN INVENTORY ARRAY//
 	cars = [];
 
+	//ADDS GIVEN CONTENT TO A GIVEN ELEMENT IN THE DOM//
 	var writeToDom = function(content, elem) {
 		elem.innerHTML = content;
 	};
 
+	//BUILDS HTML CONTENT FROM ARRAY OF CAR OBJECTS//
 	var contentBuilder = function(carsArray) {
 		var content = `<div class=row">`;
 		for (var i = 0; i < carsArray.length; i++) {
@@ -34,20 +38,19 @@ var carLot = function(object) {
 		carLot.activateEvents();
 	};
 
-	object.setCarsItem = function(object) {
-		cars[cars.length] = object;
-		contentBuilder(cars);
-	};
-
+	//OBJECT METHOD SETS MAIN CARS ARRAY TO A GIVEN ARRAY//
 	object.setCarsArray = function(array) {
 		cars = array;
 		contentBuilder(cars);
 	};
 
+	//OBJECT METHOD RETURNS MAIN CARS ARRAY//
 	object.getCarsArray = function() {
 		return cars;
 	};
-
+	
+	//OBJECT METHOD EXECUTES XHR//
+	//PARSES RETURNED DATA INTO OBJECT//
 	object.loadInventory = function() {
 
 		//CALL BACK FOR XHR REQUEST LOAD EVENT LISTENER//
@@ -58,7 +61,6 @@ var carLot = function(object) {
 				array[array.length] = (pojo.cars[i]);
 			};
 			carLot.setCarsArray(array);
-
 		};
 
 		//ADDS EVENT LISTENERS FOR XHR LOAD//
