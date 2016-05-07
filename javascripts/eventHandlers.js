@@ -12,6 +12,7 @@ var carLot = (function(object) {
 		oldElem.parentNode.replaceChild(newElem, oldElem);
 	};
 
+	//REMOVES EVENT LISTENERS FROM TEXT INPUT AND REPAINTS MAIN CONTENT//
 	var resetDom = function() {
 		textInput.value = '';
 		carLot.setCarsArray(carLot.getCarsArray());
@@ -41,7 +42,7 @@ var carLot = (function(object) {
 		//CALLBACK FOR ADD TEXT INPUT EVENT LISTENER//
 		var textInputkEventListenerCallback =  function(event, index) {
 			var description = cards[index].querySelector(".description");
-			description.innerHTML = textInput.value;
+			description.innerText = textInput.value;
 			carLot.getCarsArray()[index].description = textInput.value;
 			if(event.which===13) {
 				resetDom();
