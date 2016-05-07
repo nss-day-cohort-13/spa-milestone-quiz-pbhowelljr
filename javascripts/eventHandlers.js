@@ -12,6 +12,14 @@ var carLot = (function(object) {
 		oldElem.parentNode.replaceChild(newElem, oldElem);
 	};
 
+	var resetDom = function() {
+		textInput.value = '';
+		carLot.setCarsArray(carLot.getCarsArray());
+		cloneNode(textInput);
+		textInput = document.getElementById("textInput");
+		mainContent.focus();
+	};
+
 	//OBJECT METHOD ADDS ALL DOM ELEMENT EVENT LISTENERS//
 	object.activateEvents = function() {
 
@@ -25,7 +33,7 @@ var carLot = (function(object) {
 				addTextInputEventListener(index);
 				addSubmitButtonEventListener();
 			} else {
-				carLot.setCarsArray(carLot.getCarsArray());
+				resetDom();
 			};
 			
 		};
@@ -36,22 +44,14 @@ var carLot = (function(object) {
 			description.innerHTML = textInput.value;
 			carLot.getCarsArray()[index].description = textInput.value;
 			if(event.which===13) {
-				textInput.value = '';
-				carLot.setCarsArray(carLot.getCarsArray());
-				cloneNode(textInput);
-				textInput = document.getElementById("textInput");
-				mainContent.focus();
+				resetDom();
 			};
 		};
 
 		//ADDS EVENT LISTENER ON SUBMIT BUTTON FOR CLICK//
 		var addSubmitButtonEventListener = function() {
 			submitButton.addEventListener("click", function() {
-				textInput.value = '';
-				carLot.setCarsArray(carLot.getCarsArray());
-				cloneNode(textInput);
-				textInput = document.getElementById("textInput");
-				mainContent.focus();
+				resetDom();
 			})
 		};
 
