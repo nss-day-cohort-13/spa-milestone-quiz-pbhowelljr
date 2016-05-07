@@ -68,11 +68,10 @@ var carLot = (function(object) {
 		};
 
 		//ADDS EVENT LISTENERS ON CARD DIVS FOR CLICK//
-		var addCardsEventListeners = function() {
-			for (var i = 0; i < cards.length; i++) {
-				cards[i].addEventListener("click", cardsEventListenersCallback);
-			};
-		}();
+		for (var i = 0; i < cards.length; i++) {
+			cards[i].addEventListener("click", cardsEventListenersCallback);
+		};
+		
 	};
 
 	//RETURNS OBJECT WITH NEW METHOD ATTACHED//	
