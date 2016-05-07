@@ -16,17 +16,22 @@ var carLot = (function(object) {
 	object.activateEvents = function() {
 
 		//CALLBACK FOR ADD CARDS EVENT LISTENERS//
-		var addCardsEventListenersCallback = function(event) {
+		var cardsEventListenersCallback = function(event) {
 			var index = event.currentTarget.getAttribute("index");
-			var borderStyle = event.currentTarget.getAttribute("style");
-			var borderColor = borderStyle.slice(borderStyle.lastIndexOf(' '));
-			carLot.changeSelected(index, borderColor);
-			addTextInputEventListener(index);
-			addSubmitButtonEventListener();
+			if(cards[index].getAttribute("id") !== "selectedCard") {
+				var borderStyle = event.currentTarget.getAttribute("style");
+				var borderColor = borderStyle.slice(borderStyle.lastIndexOf(' '));
+				carLot.changeSelected(index, borderColor);
+				addTextInputEventListener(index);
+				addSubmitButtonEventListener();
+			} else {
+				carLot.setCarsArray(carLot.getCarsArray());
+			};
+			
 		};
 
 		//CALLBACK FOR ADD TEXT INPUT EVENT LISTENER//
-		var addTextInputkEventListenerCallback =  function(event, index) {
+		var textInputkEventListenerCallback =  function(event, index) {
 			var description = cards[index].querySelector(".description");
 			description.innerHTML = textInput.value;
 			carLot.getCarsArray()[index].description = textInput.value;
@@ -57,14 +62,14 @@ var carLot = (function(object) {
 			textInput = document.getElementById("textInput");
 			textInput.focus();
 			textInput.addEventListener("keyup", function(event) {
-				addTextInputkEventListenerCallback(event, index);
+				textInputkEventListenerCallback(event, index);
 			});
 		};
 
 		//ADDS EVENT LISTENERS ON CARD DIVS FOR CLICK//
 		var addCardsEventListeners = function() {
 			for (var i = 0; i < cards.length; i++) {
-				cards[i].addEventListener("click", addCardsEventListenersCallback);
+				cards[i].addEventListener("click", cardsEventListenersCallback);
 			};
 		}();
 	};
