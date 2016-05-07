@@ -21,25 +21,32 @@ var carLot = (function(object) {
 				`<div class="col-md-4">`+
 					`<div class="cards" index="${i}" style="border: 3px solid ${item.color}">`+
 						`<div class="row">`+
-							`<div class="col-xs-6">Make: </div><div class="col-xs-6 make">${item.make}</div>`+
+							`<div class="col-xs-4"><p>Make: </p></div>`+
+							`<div class="col-xs-8"><p class="make">${item.make}</p></div>`+
 						`</div>`+
 						`<div class="row">`+
-							`<div class="col-xs-6">Model: </div><div class="col-xs-6 model">${item.model}</div>`+
+							`<div class="col-xs-4"><p>Model: </p></div>`+
+							`<div class="col-xs-8"><p class="model">${item.model}</p></div>`+
 						`</div>`+
 						`<div class="row">`+
-							`<div class="col-xs-6">Year: </div><div class="col-xs-6 year">${item.year}</div>`+
+							`<div class="col-xs-4"><p>Year: </p></div>`+
+							`<div class="col-xs-8"><p class="year">${item.year}</p></div>`+
 						`</div>`+
 						`<div class="row">`+
-							`<div class="col-xs-6">Price: </div><div class="col-xs-6 price">${item.price}</div>`+
+							`<div class="col-xs-4"><p>Price: </p></div>`+
+							`<div class="col-xs-8"><p class="price">${item.price}</p></div>`+
 						`</div>`+
 						`<div class="row">`+
-							`<div class="col-xs-6">Color: </div><div class="col-xs-6 color">${item.color}</div>`+
+							`<div class="col-xs-4"><p>Color: </p></div>`+
+							`<div class="col-xs-8"><p class="color">${item.color}</p></div>`+
 						`</div>`+
 						`<div class="row">`+
-							`<div class="col-xs-6">Purchased: </div><div class="col-xs-6 purchased">${item.purchased}</div>`+
+							`<div class="col-xs-4"><p>Purchased: </p></div>`+
+							`<div class="col-xs-8"><p class="purchased">${item.purchased}</p></div>`+
 						`</div>`+
 						`<div class="row">`+
-							`<div class="col-xs-6">Description: </div><div class="col-xs-6 description">${item.description}</div>`+
+							`<div class="col-xs-4"><p>Description: </p></div>`+
+							`<div class="col-xs-8"><p class="description">${item.description}</p></div>`+
 						`</div>`+
 					`</div>`+
 				`</div>`
@@ -84,12 +91,10 @@ var carLot = (function(object) {
 		};
 
 		//INITIALIZE XHR REQUEST//
-		var load = function() {
-			var loadRequest = new XMLHttpRequest();
-			addXhrEventListener(loadRequest);
-			loadRequest.open("GET", "../json/inventory.json");
-			loadRequest.send();
-		}();
+		var loadRequest = new XMLHttpRequest();
+		addXhrEventListener(loadRequest);
+		loadRequest.open("GET", "../json/inventory.json");
+		loadRequest.send();
 	};
 	
 	//RETURNS OBJECT WITH NEW METHODS ATTACHED//	

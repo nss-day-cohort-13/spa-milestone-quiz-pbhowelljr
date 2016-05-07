@@ -45,6 +45,10 @@ body {
 	margin: 5px;
 }
 
+.cards p {
+	margin-left: 5px;
+}
+
 #selectedCard {
 	background-color: tomato;
 }

@@ -12,41 +12,47 @@ var carLot = (function(object) {
 		oldElem.parentNode.replaceChild(newElem, oldElem);
 	};
 
+	//REMOVES EVENT LISTENERS FROM TEXT INPUT AND REPAINTS MAIN CONTENT//
+	var resetDom = function() {
+		textInput.value = '';
+		carLot.setCarsArray(carLot.getCarsArray());
+		cloneNode(textInput);
+		textInput = document.getElementById("textInput");
+		mainContent.focus();
+	};
+
 	//OBJECT METHOD ADDS ALL DOM ELEMENT EVENT LISTENERS//
 	object.activateEvents = function() {
 
 		//CALLBACK FOR ADD CARDS EVENT LISTENERS//
-		var addCardsEventListenersCallback = function(event) {
+		var cardsEventListenersCallback = function(event) {
 			var index = event.currentTarget.getAttribute("index");
-			var borderStyle = event.currentTarget.getAttribute("style");
-			var borderColor = borderStyle.slice(borderStyle.lastIndexOf(' '));
-			carLot.changeSelected(index, borderColor);
-			addTextInputEventListener(index);
-			addSubmitButtonEventListener();
+			if(cards[index].getAttribute("id") !== "selectedCard") {
+				var borderStyle = event.currentTarget.getAttribute("style");
+				var borderColor = borderStyle.slice(borderStyle.lastIndexOf(' '));
+				carLot.changeSelected(index, borderColor);
+				addTextInputEventListener(index);
+				addSubmitButtonEventListener();
+			} else {
+				resetDom();
+			};
+			
 		};
 
 		//CALLBACK FOR ADD TEXT INPUT EVENT LISTENER//
-		var addTextInputkEventListenerCallback =  function(event, index) {
+		var textInputkEventListenerCallback =  function(event, index) {
 			var description = cards[index].querySelector(".description");
-			description.innerHTML = textInput.value;
+			description.innerText = textInput.value;
 			carLot.getCarsArray()[index].description = textInput.value;
 			if(event.which===13) {
-				textInput.value = '';
-				carLot.setCarsArray(carLot.getCarsArray());
-				cloneNode(textInput);
-				textInput = document.getElementById("textInput");
-				mainContent.focus();
+				resetDom();
 			};
 		};
 
 		//ADDS EVENT LISTENER ON SUBMIT BUTTON FOR CLICK//
 		var addSubmitButtonEventListener = function() {
 			submitButton.addEventListener("click", function() {
-				textInput.value = '';
-				carLot.setCarsArray(carLot.getCarsArray());
-				cloneNode(textInput);
-				textInput = document.getElementById("textInput");
-				mainContent.focus();
+				resetDom();
 			})
 		};
 
@@ -57,16 +63,15 @@ var carLot = (function(object) {
 			textInput = document.getElementById("textInput");
 			textInput.focus();
 			textInput.addEventListener("keyup", function(event) {
-				addTextInputkEventListenerCallback(event, index);
+				textInputkEventListenerCallback(event, index);
 			});
 		};
 
 		//ADDS EVENT LISTENERS ON CARD DIVS FOR CLICK//
-		var addCardsEventListeners = function() {
-			for (var i = 0; i < cards.length; i++) {
-				cards[i].addEventListener("click", addCardsEventListenersCallback);
-			};
-		}();
+		for (var i = 0; i < cards.length; i++) {
+			cards[i].addEventListener("click", cardsEventListenersCallback);
+		};
+		
 	};
 
 	//RETURNS OBJECT WITH NEW METHOD ATTACHED//	
