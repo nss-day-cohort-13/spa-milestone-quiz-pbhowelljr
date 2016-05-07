@@ -84,12 +84,10 @@ var carLot = (function(object) {
 		};
 
 		//INITIALIZE XHR REQUEST//
-		var load = function() {
-			var loadRequest = new XMLHttpRequest();
-			addXhrEventListener(loadRequest);
-			loadRequest.open("GET", "../json/inventory.json");
-			loadRequest.send();
-		}();
+		var loadRequest = new XMLHttpRequest();
+		addXhrEventListener(loadRequest);
+		loadRequest.open("GET", "../json/inventory.json");
+		loadRequest.send();
 	};
 	
 	//RETURNS OBJECT WITH NEW METHODS ATTACHED//	
